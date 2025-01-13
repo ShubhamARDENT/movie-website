@@ -12,7 +12,7 @@ const fetchPokemons = async () => {
         return pokeData;
       })
     );
- 
+    return urls;
   } catch (error) {
     console.error("Error fetching data:", error);
   }

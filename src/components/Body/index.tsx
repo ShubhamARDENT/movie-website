@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchPokemons } from '../../Api/Api'
 
+import SearchBar from '../searchBar'
+
 
 const Home = () => {
 
@@ -12,11 +14,16 @@ const Home = () => {
 
     console.log(data)
     return (
-        <div>
-            {isLoading && <h1>Loading...</h1>}
-            {isError && <p>{error?.message}</p>}
-           
-        </div>
+        <>
+
+            <SearchBar />
+            <div className=''>
+                {isLoading && <h1>Loading...</h1>}
+                {isError && <p>{error?.message}</p>}
+            </div>
+
+        </>
+
     )
 }
 

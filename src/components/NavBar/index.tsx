@@ -38,7 +38,7 @@ const NavBar = () => {
   {
     name: "News", image: './images/pokecoin.png'
   },
-
+  
   ]
 
   return (

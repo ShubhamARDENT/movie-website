@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronLeft, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { IPaginationUrl } from '../../interface/interfaces';
 
 
@@ -29,10 +29,12 @@ const SortBy = ({ prevUrl, nextUrl, handlePrevious, handleNext }: IPaginationUrl
                          justify-between 
                          items-center 
                          gap-10 
-                         font-medium'>
+                         font-medium
+                         cursor-pointer'
+                         >
                             <img src={pokeball} alt={item} className='w-11 h-11 ' />
                             {item}
-
+                            <FontAwesomeIcon icon={faCaretDown} />
                         </li>
                     ))}
                     <button onClick={handleNext} disabled={nextUrl === null} className='disabled:bg-gray-500'>

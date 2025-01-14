@@ -11,3 +11,10 @@ export interface IpokemonData {
   sprites: string;
   front_default: string;
 }
+
+export interface IPaginationUrl {
+  handleNext: () => void;
+  handlePrevious: () => void;
+  nextUrl: string | null;
+  prevUrl: string | null;
+}

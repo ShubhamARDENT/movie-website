@@ -2,11 +2,13 @@ import { Ipokemon } from "../interface/interfaces";
 
 const fetchPokemons = async (pageurl: string, query: string) => {
   try {
+    // if query exist then my query api call is made else by default url
     const url = query ? `https://pokeapi.co/api/v2/pokemon/${query}` : pageurl;
     const response = await fetch(url);
     const allData = await response.json();
-
+    // for search query
     if (query) {
+
       const data = {
         results: [allData],
         next: allData.next,

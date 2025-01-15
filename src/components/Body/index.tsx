@@ -4,19 +4,22 @@ import SearchBar from '../searchBar'
 import SortBy from '../sortBy'
 import PokemonCards from '../PokemonCards'
 import { useEffect, useState } from 'react'
+import { simplePokemon } from '../../interface/interfaces'
+import DetailedPokemon from '../DetailedPokemon'
 
 
 const Home = () => {
     const [query, setQuery] = useState('')
     const [debouncedQuery, setdebouncedQuery] = useState('')
+    const [PokemonName, setPokemonName] = useState('')
     const [pageUrl, setpageUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=12&offset=0')
+
     const { data, isLoading, error, isError } = useQuery({
-        queryKey: ['pokemons', pageUrl, debouncedQuery],
-        queryFn: () => fetchPokemons(pageUrl, debouncedQuery)
+        queryKey: ['pokemons', pageUrl, debouncedQuery,],
+        queryFn: () => fetchPokemons(pageUrl, debouncedQuery,)
     })
-    console.log(query)
-    // console.log(data)
-    // console.log(data?.results)
+
+
     const handleNext = () => {
         if (data?.next) {
             setpageUrl(data.next)
@@ -29,11 +32,14 @@ const Home = () => {
         }
     }
 
+    const handleSelectedPokemon = (name: string) => {
+        setPokemonName(name)
+    }
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setdebouncedQuery(query)
         }, 1000)
-
         return () => clearTimeout(timer)
     }, [query])
 
@@ -42,6 +48,10 @@ const Home = () => {
     }
 
     // console.log(pageUrl)
+
+    // getting a single poke accorind to id and passign to detailed pokemon
+    const selectedPokemon: simplePokemon = data?.results.find((pokemon: simplePokemon) => pokemon.name === PokemonName)
+
     return (
         <>
             <div className='flex justify-center'>
@@ -56,13 +66,17 @@ const Home = () => {
                 prevUrl={data?.previous} />
 
             <div className='flex justify-center'>
-                <div className='grid grid-cols-4 gap-20 mt-20 w-[75%]  '>
-                    {data?.results.map((pokemon) => (
-                        <PokemonCards key={pokemon.id} pokemon={pokemon} />
+                {/* increase width here for detail card */}
+                <div className='grid grid-cols-3 gap-5 gap-y-16 my-20 w-[60%]  '>
+                    {data?.results.map((pokemon: simplePokemon) => (
+                        <PokemonCards key={pokemon.id} pokemon={pokemon} onClick={() => handleSelectedPokemon(pokemon.name)} />
                     ))}
                 </div>
+                <div className='w-[16%] my-20'>
+                    {selectedPokemon === undefined ? <DetailedPokemon pokemon={data?.results[0]} /> :
+                        <DetailedPokemon pokemon={selectedPokemon} />}
+                </div>
             </div>
-
         </>
 
     )

@@ -18,3 +18,47 @@ export interface IPaginationUrl {
   nextUrl: string | null;
   prevUrl: string | null;
 }
+
+export interface simplePokemon {
+  id: number;
+  name: string;
+  weight: number;
+  height: number;
+  base_experience: number;
+
+  sprites: {
+    other: {
+      showdown: {
+        front_default: string;
+      };
+      ["official-artwork"]: {
+        front_default: string;
+      };
+    };
+  };
+  cries: {
+    latest: string;
+  };
+
+  types: {
+    type: {
+      name: string;
+    };
+  }[];
+
+  abilities: {
+    ability: {
+      name: string;
+      url: string;
+    };
+  }[];
+
+  stats: {
+    base_stat: number;
+  }[];
+}
+
+export interface Ipokemons {
+  pokemon: simplePokemon;
+  onClick?: () => void;
+}

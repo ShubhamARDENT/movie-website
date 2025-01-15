@@ -8,8 +8,10 @@ interface RouteError {
 
 const Error = () => {
   const error = useRouteError() as RouteError;
+  console.log(error)
   return (
     <div>
+      <div>error page</div>
       <div>{error.message}</div>
       <div>{error.status}</div>
     </div>

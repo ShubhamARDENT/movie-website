@@ -4,7 +4,7 @@ import SearchBar from '../searchBar'
 import SortBy from '../sortBy'
 import PokemonCards from '../PokemonCards'
 import { useEffect, useState } from 'react'
-import { simplePokemon } from '../../interface/interfaces'
+import { Ipokemons } from '../../interface/interfaces'
 import DetailedPokemon from '../DetailedPokemon'
 
 
@@ -18,7 +18,7 @@ const Home = () => {
         queryKey: ['pokemons', pageUrl, debouncedQuery,],
         queryFn: () => fetchPokemons(pageUrl, debouncedQuery,)
     })
-
+    // console.log(data, 'body')
 
     const handleNext = () => {
         if (data?.next) {
@@ -47,10 +47,11 @@ const Home = () => {
         setQuery(event.target.value)
     }
 
-    // console.log(pageUrl)
 
-    // getting a single poke accorind to id and passign to detailed pokemon
-    const selectedPokemon: simplePokemon = data?.results.find((pokemon: simplePokemon) => pokemon.name === PokemonName)
+    // getting a single poke according to id and passing to detailed pokemon
+
+    const selectedPokemon = data?.results.find((pokemonData) => pokemonData.pokemon.name === PokemonName);
+
 
     return (
         <>
@@ -67,14 +68,25 @@ const Home = () => {
 
             <div className='flex justify-center'>
                 {/* increase width here for detail card */}
-                <div className='grid grid-cols-3 gap-5 gap-y-16 my-20 w-[60%]  '>
-                    {data?.results.map((pokemon: simplePokemon) => (
-                        <PokemonCards key={pokemon.id} pokemon={pokemon} onClick={() => handleSelectedPokemon(pokemon.name)} />
+                <div className='grid grid-cols-3 gap-5 gap-y-16 my-20 w-[60%] cursor-pointer  '>
+                    {data?.results.map((pokemonData: Ipokemons) => (
+                        <PokemonCards key={pokemonData.pokemon.id}
+                            pokemon={pokemonData.pokemon}
+                            species={pokemonData.species}
+                            evolution={pokemonData.evolution}
+                            onClick={() => handleSelectedPokemon(pokemonData.pokemon.name)} />
                     ))}
                 </div>
                 <div className='w-[16%] my-20'>
-                    {selectedPokemon === undefined ? <DetailedPokemon pokemon={data?.results[0]} /> :
-                        <DetailedPokemon pokemon={selectedPokemon} />}
+                    {selectedPokemon === undefined ? <DetailedPokemon
+                        pokemon={data?.results[0].pokemon}
+                        species={data?.results[0].speciesData}
+                        evolution={data?.results[0].evolutionChain}
+                    /> :
+                        <DetailedPokemon
+                            evolution={selectedPokemon.evolutionChain}
+                            species={selectedPokemon.speciesData}
+                            pokemon={selectedPokemon.pokemon} />}
                 </div>
             </div>
         </>

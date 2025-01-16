@@ -6,9 +6,9 @@ const fetchPokemons = async (pageurl: string, query: string) => {
     const url = query ? `https://pokeapi.co/api/v2/pokemon/${query}` : pageurl;
     const response = await fetch(url);
     const allData = await response.json();
+
     // for search query
     if (query) {
-
       const data = {
         results: [allData],
         next: allData.next,
@@ -19,12 +19,29 @@ const fetchPokemons = async (pageurl: string, query: string) => {
     // making an array of each pokemon url
     const pokemonUrls = allData.results.map(async (pokemon: Ipokemon) => {
       const response = await fetch(pokemon.url);
-      const data = response.json();
-      return data;
+      const data = await response.json();
+
+      // getting species data of all pokemons
+      const species = await fetch(data.species.url);
+      const speciesData = await species.json();
+
+      const evolutionChainResponse = await fetch(
+        speciesData.evolution_chain.url
+      );
+      const evolutionChainData = await evolutionChainResponse.json();
+
+      // return species data and evolution data of each pokemon
+      return {
+        pokemon: data,
+        speciesData: speciesData,
+        evolutionChain: evolutionChainData,
+      };
     });
 
-    // fetching all pokemon urls
+    //  fetching all pokemon urls along with speciesdata
+    // and evoluton data of all pokemons
     const detailedPokemons = await Promise.all(pokemonUrls);
+    // console.log(detailedPokemons);
 
     const data = {
       results: detailedPokemons,

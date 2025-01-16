@@ -55,10 +55,34 @@ export interface simplePokemon {
 
   stats: {
     base_stat: number;
+    stat: {
+      name: string;
+    };
   }[];
 }
 
+export interface Ispecies {
+  flavor_text_entries: {
+    flavor_text: string;
+  }[];
+}
+
+export interface Ievolution {
+  chain: {
+    evolves_to: {
+      species:{
+        name:string
+      }
+    }[];
+    species:{
+      name:string
+    }
+  };
+}
+
 export interface Ipokemons {
+  evolution :Ievolution
   pokemon: simplePokemon;
+  species: Ispecies;
   onClick?: () => void;
 }

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { Ipokemons } from '../../interface/interfaces'
 import DetailedPokemon from '../DetailedPokemon'
 
-
+// pokemon weakness is not displayed and evolution is remaining
 const Home = () => {
     const [query, setQuery] = useState('')
     const [debouncedQuery, setdebouncedQuery] = useState('')

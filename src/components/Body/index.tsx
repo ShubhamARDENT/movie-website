@@ -17,8 +17,9 @@ const Home = () => {
     const { data, isLoading, error, isError } = useQuery({
         queryKey: ['pokemons', pageUrl, debouncedQuery,],
         queryFn: () => fetchPokemons(pageUrl, debouncedQuery,)
+
     })
-    // console.log(data, 'body')
+    console.log(data, 'body')
 
     const handleNext = () => {
         if (data?.next) {
@@ -82,11 +83,13 @@ const Home = () => {
                         pokemon={data?.results[0].pokemon}
                         species={data?.results[0].speciesData}
                         evolution={data?.results[0].evolutionChain}
+                        PokemonWeakness={data?.results[0].PokemonWeakness}
                     /> :
                         <DetailedPokemon
                             evolution={selectedPokemon.evolutionChain}
                             species={selectedPokemon.speciesData}
-                            pokemon={selectedPokemon.pokemon} />}
+                            pokemon={selectedPokemon.pokemon}
+                            PokemonWeakness={selectedPokemon.PokemonWeakness} />}
                 </div>
             </div>
         </>

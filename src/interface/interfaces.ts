@@ -1,6 +1,10 @@
 export interface Ipokemon {
   name: string;
   url: string;
+
+  type: {
+    url: string;
+  };
 }
 
 export interface IpokemonData {
@@ -70,18 +74,29 @@ export interface Ispecies {
 export interface Ievolution {
   chain: {
     evolves_to: {
-      species:{
-        name:string
-      }
+      species: {
+        name: string;
+      };
     }[];
-    species:{
-      name:string
-    }
+    species: {
+      name: string;
+    };
   };
 }
 
+export interface Iweakness {
+  PokemonWeakness: {
+    damage_relations: {
+      double_damage_from: {
+        name: string;
+        url: string;
+      }[];
+    };
+  }[];
+}
+
 export interface Ipokemons {
-  evolution :Ievolution
+  evolution: Ievolution;
   pokemon: simplePokemon;
   species: Ispecies;
   onClick?: () => void;

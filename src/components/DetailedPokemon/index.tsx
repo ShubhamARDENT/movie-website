@@ -1,14 +1,18 @@
 
-import { Ievolution, Ispecies, simplePokemon } from '../../interface/interfaces'
+import { Ievolution, Ispecies, Iweakness, simplePokemon } from '../../interface/interfaces'
 
 
 interface IDetailedPokemon {
+    PokemonWeakness: Iweakness
     evolution: Ievolution
     species: Ispecies
     pokemon: simplePokemon | null
 }
-const DetailedPokemon = ({ pokemon, species, evolution }: IDetailedPokemon) => {
-    console.log(evolution, 'er')
+const DetailedPokemon = ({ pokemon, species, PokemonWeakness }: IDetailedPokemon) => {
+    // console.log(evolution), 'hello')
+
+
+
 
     const typeColors: { [key: string]: string } = {
         grass: "bg-green-500 text-green-900", // Green for Grass type
@@ -40,11 +44,9 @@ const DetailedPokemon = ({ pokemon, species, evolution }: IDetailedPokemon) => {
     if (!pokemon) {
         return <div>loading...</div>
     }
-    // console.log(pokemon.sprites.other['official-artwork'].front_default)
+
     const { front_default } = pokemon.sprites.other['official-artwork']
 
-    // const { name } = evolution.chain.evolves_to[0].species
-    // console.log(name)
     return (
         <div
             className="shadow-md 
@@ -69,7 +71,6 @@ const DetailedPokemon = ({ pokemon, species, evolution }: IDetailedPokemon) => {
             </div>
             <span className='font-bold text-xl my-3 uppercase'>PokéDex Entry</span>
             <p className='font-semibold'>{species.flavor_text_entries[8].flavor_text}</p>
-
             <span className='font-bold text-base my-6 uppercase'>Abilities</span>
             <div className='flex justify-between gap-2'>
                 {
@@ -137,7 +138,7 @@ const DetailedPokemon = ({ pokemon, species, evolution }: IDetailedPokemon) => {
             </div>
             <div>
                 <p>evolution</p>
-                <p>{ }</p>
+
             </div>
         </div >
     )

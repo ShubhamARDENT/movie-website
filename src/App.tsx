@@ -4,6 +4,7 @@ import './App.css'
 import Home from './components/Body'
 import Error from './components/error'
 import NavBar from './components/NavBar'
+import Pokedex from './components/pokdex'
 
 
 const Applayout = () => {
@@ -25,7 +26,15 @@ function App() {
         {
           path: "/",
           element: <Home />
+        },
+        {
+
+          path: '/pokedex',
+          element: <Pokedex />
         }
+
+
+
       ]
     },
   ])

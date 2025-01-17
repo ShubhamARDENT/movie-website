@@ -1,45 +1,45 @@
 import {
   AppBar,
-  Box,
-  Button,
   Container,
-  Link,
   List,
   ListItem,
-  MenuItem,
   Toolbar,
-  Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router";
 
 
 
 const NavBar = () => {
 
-
-  const menuItems = [{
-    name: "Home", image: './images/pokeball.png'
-  },
-  {
-    name: "pokedex", image: './images/game.png'
-  },
-  {
-    name: "videogames", image: './images/game2.png'
-  },
-  {
-    name: "gcc games", image: './images/pokeballs.png'
-  },
-
-  {
-    name: "TV Pokemons", image: './images/pokemon-go.png'
-  },
-  {
-    name: "Play! Pokemon", image: './images/pokeball.png'
-  },
-  {
-    name: "News", image: './images/pokecoin.png'
-  },
-
+  const navigate = useNavigate()
+  const menuItems = [
+    {
+      name: "Home", image: './images/pokeball.png', path: '/'
+    },
+    {
+      name: "pokedex", image: './images/game.png', path: '/pokedex'
+    },
+    {
+      name: "videogames", image: './images/game2.png', path: '/videogames'
+    },
+    {
+      name: "gcc games", image: './images/pokeballs.png', path: '/gccgames'
+    },
+    {
+      name: "TV Pokemons", image: './images/pokemon-go.png', path: '/tvpokemons'
+    },
+    {
+      name: "Play! Pokemon", image: './images/pokeball.png', path: '/playpokemon'
+    },
+    {
+      name: "News", image: './images/pokecoin.png', path: '/news'
+    },
   ]
+
+  // const handleNavigation = (path: string) => {
+  //   navigate(path)
+  //   console.log(path)
+  // }
 
   return (
     <Container
@@ -84,8 +84,9 @@ const NavBar = () => {
                     color: "red",
                     borderBottom: "3px solid red",
                   },
-                }}
 
+                }}
+                onClick={() => navigate(item.path)}
                 key={index}
               >
                 <div className="flex justify-between items-center">
@@ -97,13 +98,9 @@ const NavBar = () => {
                     {item.name}
                   </div>
                 </div>
-
-
-
               </ListItem>
             ))}
           </List>
-
         </Toolbar>
       </AppBar>
     </Container>

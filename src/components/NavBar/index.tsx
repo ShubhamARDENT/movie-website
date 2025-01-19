@@ -36,10 +36,7 @@ const NavBar = () => {
     },
   ]
 
-  // const handleNavigation = (path: string) => {
-  //   navigate(path)
-  //   console.log(path)
-  // }
+
 
   return (
     <Container

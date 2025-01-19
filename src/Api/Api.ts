@@ -6,7 +6,7 @@ const fetchPokemons = async (pageurl: string, query: string) => {
     const url = query ? `https://pokeapi.co/api/v2/pokemon/${query}` : pageurl;
     const response = await fetch(url);
     const allData = await response.json();
-    console.log(allData);
+    // console.log(allData);
     // for search query
     if (query) {
       const data = {

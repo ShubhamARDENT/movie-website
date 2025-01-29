@@ -1,22 +1,29 @@
-import React from 'react'
+import React from "react";
 
-import pokeball from '/images/pokeball.png'
+import pokeball from "/images/pokeball.png";
 
-
-const SearchBar = () => {
-    return (
-        <section className='flex justify-center align-middle  '>
-            <div className='w-3/5 relative'>
-                <input type="text" placeholder='search your pokemon !'
-                    className='text-lg px-6 py-[25px] w-full rounded-lg shadow-md outline-none
-                font-sans ' />
-                <button className=' rounded-lg absolute top-[1rem] right-[1rem]'>
-                    <img src={pokeball} alt="pokeball " className='h-12' />
-                </button>
-
-            </div>
-        </section>
-    )
+interface IQuery {
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  query: string;
 }
+const SearchBar = ({ handleSearch, query }: IQuery) => {
+  return (
+    <div className="flex">
+      <div className="w-[99%] relative">
+        <input
+          onChange={handleSearch}
+          type="text"
+          value={query}
+          placeholder="search your pokemon !"
+          className="text-lg px-6 py-[25px] w-full rounded-lg shadow-md outline-none
+                font-sans "
+        />
+        <button className=" rounded-lg absolute top-[1rem] right-[1rem]">
+          <img src={pokeball} alt="pokeball " className="h-12" />
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

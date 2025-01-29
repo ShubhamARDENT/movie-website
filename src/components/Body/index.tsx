@@ -12,7 +12,7 @@ const Home = () => {
     })
 
 
-    console.log(data)
+    // console.log(data)
 
     return (
         <>
@@ -30,8 +30,7 @@ const Home = () => {
                 </div>
             </div>
 
-
-        </>
+         </>
 
     )
 }

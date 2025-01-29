@@ -96,8 +96,8 @@ export interface Iweakness {
 }
 
 export interface Ipokemons {
-  evolution: Ievolution;
+  evolution?: Ievolution;
   pokemon: simplePokemon;
-  species: Ispecies;
+  species?: Ispecies;
   onClick?: () => void;
 }

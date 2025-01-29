@@ -20,7 +20,7 @@ const Home = () => {
     queryKey: ["pokemons", pageUrl, debouncedQuery],
     queryFn: () => fetchPokemons(pageUrl, debouncedQuery),
   });
-  console.log(data, "body");
+  // console.log(data, "body");
 
   const handleNext = () => {
     if (data?.next) {
@@ -58,7 +58,7 @@ const Home = () => {
   return (
     <>
       <div className="flex justify-center">
-        {isLoading && <h1>loading</h1>}
+        {isLoading && <h1>loading...</h1>}
         {isError && <p>{error?.message}</p>}
       </div>
 
@@ -77,8 +77,8 @@ const Home = () => {
               <PokemonCards
                 key={pokemonData.pokemon.id}
                 pokemon={pokemonData.pokemon}
-                species={pokemonData.species}
-                evolution={pokemonData.evolution}
+                // species={pokemonData.species}
+                // evolution={pokemonData.evolution}
                 onClick={() => handleSelectedPokemon(pokemonData.pokemon.name)}
               />
             ))}

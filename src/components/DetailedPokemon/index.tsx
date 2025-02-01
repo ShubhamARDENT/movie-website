@@ -6,9 +6,9 @@ import {
 } from "../../interface/interfaces";
 
 interface IDetailedPokemon {
-  PokemonWeakness: Iweakness;
-  evolution: Ievolution;
-  species: Ispecies;
+  PokemonWeakness?: Iweakness;
+  evolution?: Ievolution;
+  species?: Ispecies;
   pokemon: simplePokemon | null;
 }
 const DetailedPokemon = ({
@@ -45,15 +45,15 @@ const DetailedPokemon = ({
     { status: "SpD", color: "bg-green-600" },
     { status: "SPD", color: "bg-pink-500" },
   ];
-  if (!pokemon) {
-    return <div>loading...</div>;
-  }
 
-  const { front_default } = pokemon.sprites.other["official-artwork"];
+
+  const front_default = pokemon?.sprites.other["official-artwork"].front_default;
+
 
   return (
     <>
       <div
+
         className="shadow-md 
                  rounded-2xl
                bg-white
@@ -65,14 +65,14 @@ const DetailedPokemon = ({
                  px-8
                 "
       >
-    
-          <img src={front_default} alt="" className="w-[200px] -mt-32"/>
+
+        <img src={front_default} alt="" className="w-[200px] -mt-32" />
         <p className="font-bold text-2xl h-[35px] my-5 overflow-hidden">
-          {pokemon.name}
+          {pokemon?.name}
         </p>
         {/* here */}
         <div className="flex justify-between gap-3 flex-wrap">
-          {pokemon.types.map((type, index) => {
+          {pokemon?.types.map((type, index) => {
             const typeColor = typeColors[type.type.name];
             return (
               <span
@@ -86,11 +86,11 @@ const DetailedPokemon = ({
         </div>
         <span className="font-bold text-xl my-3 uppercase">PokéDex Entry</span>
         <p className="font-semibold">
-          {species.flavor_text_entries[8].flavor_text}
+          {species?.flavor_text_entries[8]?.flavor_text}
         </p>
         <span className="font-bold text-base my-6 uppercase">Abilities</span>
         <div className="flex justify-between gap-2">
-          {pokemon.abilities.map((eachAbility, index) => {
+          {pokemon?.abilities.map((eachAbility, index) => {
             return (
               <span
                 key={index}
@@ -117,7 +117,7 @@ const DetailedPokemon = ({
                    font-semibold px-[43px] py-[5px] rounded-3xl
                     "
             >
-              {pokemon.height}m
+              {pokemon?.height}m
             </span>
           </div>
           <div className="flex flex-col items-center">
@@ -126,7 +126,7 @@ const DetailedPokemon = ({
               className="bg-gray-200 
                    font-semibold px-[43px] py-[5px] rounded-3xl"
             >
-              {pokemon.weight}Kg
+              {pokemon?.weight}Kg
             </span>
           </div>
         </div>
@@ -138,7 +138,7 @@ const DetailedPokemon = ({
                    font-semibold px-[50px] py-[5px] rounded-3xl
                     "
             >
-              {pokemon.height}
+              {pokemon?.height}
             </span>
           </div>
           <div className="flex flex-col items-center">
@@ -147,7 +147,7 @@ const DetailedPokemon = ({
               className="bg-gray-200 
                    font-semibold px-[55px] py-[5px] rounded-3xl"
             >
-              {pokemon.base_experience}
+              {pokemon?.base_experience}
             </span>
           </div>
         </div>
@@ -155,7 +155,7 @@ const DetailedPokemon = ({
           <span className="font-bold text-base my-6 uppercase">stats</span>
           {/* dispaly stats */}
           <ul className="flex gap-2 mt-5 justify-between">
-            {pokemon.stats.map((stat, index) => {
+            {pokemon?.stats.map((stat, index) => {
               const statName = statNames[index].status;
 
               const statColor = statNames[index].color;
@@ -178,7 +178,7 @@ const DetailedPokemon = ({
           </ul>
         </div>
         <div>
-          <p>evolution</p>
+          <p>evolution PART IS REMAINING</p>
         </div>
       </div>
     </>

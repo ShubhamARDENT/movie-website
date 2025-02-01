@@ -1,7 +1,6 @@
 export interface Ipokemon {
   name: string;
   url: string;
-
   type: {
     url: string;
   };
@@ -97,7 +96,7 @@ export interface Iweakness {
 
 export interface Ipokemons {
   evolution?: Ievolution;
-  pokemon: simplePokemon;
+  pokemon?: simplePokemon;
   species?: Ispecies;
   onClick?: () => void;
 }

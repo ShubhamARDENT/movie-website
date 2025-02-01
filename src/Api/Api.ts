@@ -6,13 +6,13 @@ const fetchPokemons = async (pageurl: string, query: string) => {
     const url = query ? `https://pokeapi.co/api/v2/pokemon/${query}` : pageurl;
     const response = await fetch(url);
     const allData = await response.json();
-    // console.log(allData);
+
     // for search query
     if (query) {
       const data = {
-        results: [allData],
-        next: allData.next,
-        previous: allData.previous,
+        results: [{ pokemon: allData }],
+        next: null,
+        previous: null,
       };
       return data;
     }
@@ -49,9 +49,13 @@ const fetchPokemons = async (pageurl: string, query: string) => {
 
     //  fetching all pokemon urls along with speciesdata
     // and evoluton data of all pokemons
-    const detailedPokemons = await Promise.all(pokemonUrls);
-    // console.log(detailedPokemons);
 
+    const detailedPokemons = await Promise.all(pokemonUrls);
+
+    /* results 
+    is an array of 
+    objects each object has 
+    pokemon,speciesdata , evolution */
     const data = {
       results: detailedPokemons,
       next: allData.next,

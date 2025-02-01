@@ -6,6 +6,7 @@ import { simplePokemon } from '../../../interface/interfaces';
 import '@testing-library/jest-dom';
 
 describe("pokemon cards", () => {
+    // mocking a get request
     beforeEach(() => {
         global.fetch = vi.fn()
     })
@@ -67,3 +68,5 @@ describe("pokemon cards", () => {
         expect(screen.getByText(mockSimplePokemon.types[0].type.name)).toBeInTheDocument()
     })
 })
+
+

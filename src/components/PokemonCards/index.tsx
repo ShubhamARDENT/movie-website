@@ -23,12 +23,13 @@ const PokemonCards = ({ pokemon, onClick }: Ipokemons) => {
         ice: 'bg-cyan-500 text-white',
         ghost: 'bg-black text-white'
     }
+    // console.log(pokemon, "in cards")
 
-    // console.log(pokemon)
-    const { front_default } = pokemon.sprites.other.showdown
+    const front_default = pokemon?.sprites?.other?.showdown?.front_default
 
     return (
         <div
+            data-testid={`pokemon-id-${pokemon?.id}`}
             className="shadow-md 
                  rounded-2xl
                bg-white
@@ -38,23 +39,19 @@ const PokemonCards = ({ pokemon, onClick }: Ipokemons) => {
                  w-[100%]
                  h-[250px]
                  p-5
-
                 max-w-[300px]
                 "
             onClick={onClick}>
-            <img src={front_default} alt={pokemon.name}
+            <img src={front_default} alt={pokemon?.name}
                 className="w-[100px] h-[100px] object-contain -mt-20" />
             {/* description */}
             <div className="flex flex-col items-center mt-5">
-
-                <p className="text-gray-400 font-semibold text-sm  ">Weight:{pokemon.weight}</p>
-
-                <p className='font-bold text-2xl h-[35px] my-5 overflow-hidden'>{pokemon.name}</p>
-
+                <p className="text-gray-400 font-semibold text-sm  ">Weight:{pokemon?.weight}</p>
+                <p className='font-bold text-2xl h-[35px] my-5 overflow-hidden'>{pokemon?.name}</p>
                 <div className="flex justify-between gap-3 flex-wrap">
-                    {pokemon.types.map((type, index) => {
+                    {pokemon?.types.map((type, index) => {
                         const typeColor = typeColors[type.type.name]
-                        return <span key={index} className={`${typeColor} color px-5 py-2 font-bold rounded-md`}>{type.type.name}</span>
+                        return <span key={index} className={`${typeColor} color px-5 py-2 font-bold rounded-md`}>{type?.type.name}</span>
                     })}
                 </div>
             </div>

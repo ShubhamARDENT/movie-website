@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Pokedex = () => {
+
+    const [pokemonName, setPokemonName] = useState("")
+
+
     return (
-        <div>Pokedex</div>
+        <div>
+            <div>
+                PokeDex
+            </div>
+            <div>{pokemonName}</div>
+
+            <button
+                style={{
+                    background: "red",
+                    padding: "10px"
+                }}
+            >Post button</button>
+        </div>
     )
 }
 
